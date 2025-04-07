@@ -1,10 +1,17 @@
-"use client";
+'use client'
 import AddItemForm from "@/components/AddItemForm";
+import { Item } from "@/types/item";
 
-export default function Home() {
+const Page = () => {
+  const handleAddItem = (item: Item) => {
+    console.log("Item recebido no componente pai:", item);
+  };
+
   return (
-    <>
-      <AddItemForm onAddItem={() => {}} />
-    </>
+    <main>
+      <AddItemForm onAddItem={handleAddItem} />
+    </main>
   );
-}
+};
+
+export default Page;
