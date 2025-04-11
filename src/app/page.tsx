@@ -1,15 +1,21 @@
-'use client'
+"use client";
 import AddItemForm from "@/components/AddItemForm";
+import ShoppingList from "@/components/ShoppingList";
 import { Item } from "@/types/item";
+import { useState } from "react";
 
 const Page = () => {
+  const [items, setItems] = useState<Item[]>([]);
+
   const handleAddItem = (item: Item) => {
-    console.log("Item recebido no componente pai:", item);
+    setItems((prev) => [...prev, item]);
   };
 
   return (
-    <main>
+    <main className="p-3">
+      <h1 className="text-2xl font-bold mb-4">Minha Lista de Compras</h1>
       <AddItemForm onAddItem={handleAddItem} />
+      <ShoppingList items={items} />
     </main>
   );
 };
