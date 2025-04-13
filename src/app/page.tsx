@@ -20,10 +20,10 @@ const Page = () => {
   };
 
   return (
-    <main className="p-3">
+    <main className="min-h-screen flex flex-col justify-center items-center bg-gray-50 p-6">
       <h1 className="text-2xl font-bold mb-4">Minha Lista de Compras</h1>
       <AddItemForm onAddItem={handleAddItem} />
-      <ShoppingList items={items} onToggleBought={handleToggleBought}/>
+      <ShoppingList items={items} onToggleBought={handleToggleBought} />
     </main>
   );
 };

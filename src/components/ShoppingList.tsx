@@ -7,41 +7,39 @@ type Props = {
 
 const ShoppingList = ({ items, onToggleBought }: Props) => {
   return (
-    <>
-      <div>
-        <h2 className="text-x1 font-bold mb-4">Itens Adicionados</h2>
-        <ul className="space-y-2">
-          {items.map((item) => (
-            <li
-              key={item.id}
-              className="border p-2 rounded-md flex justify-between items-center"
-            >
-              <div className="flex flex-col">
-                <span
-                  className={item.bought ? "line-through text-gray-500" : ""}
-                >
-                  {item.name}
-                </span>
-                <span
-                  className={item.bought ? "line-through text-gray-500" : ""}
-                >
-                  R$ {item.price.toFixed(2)}
-                </span>
-              </div>
+    <div className="w-full max-w-md mt-6">
+      <ul className="bg-white rounded-xl shadow-md overflow-hidden divide-y divide-gray-200">
+        {items.map((item) => (
+          <li key={item.id} className="flex items-center px-4 py-3">
+            {/* Checkbox */}
+            <input
+              type="checkbox"
+              checked={item.bought}
+              onChange={() => onToggleBought(item.id)}
+              className="w-5 h-5 accent-black mr-4"
+            />
 
-              <button
-                onClick={() => onToggleBought(item.id)}
-                className={`text-sm px-3 py-1 rounded ${
-                  item.bought ? "bg-green-500 text-white" : "bg-gray-200"
+            {/* Informações */}
+            <div className="flex-1">
+              <p
+                className={`text-base font-medium ${
+                  item.bought ? "line-through text-gray-400" : "text-gray-900"
                 }`}
               >
-                {item.bought ? "Comprado" : "Marcar"}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </>
+                {item.name}
+              </p>
+              <p
+                className={`text-sm ${
+                  item.bought ? "line-through text-gray-300" : "text-gray-500"
+                }`}
+              >
+                R$ {item.price.toFixed(2)}
+              </p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
